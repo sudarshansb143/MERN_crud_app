@@ -1,9 +1,9 @@
-##🔅  Node.js and Mongo DB  Application 🔅
+##🔅Node.js and Mongo DB  Application 🔅
 
 this is simplistic web application usin mongo db and nodejs 
 
 
-###  💻 Usgae
+### 💻 Usgae
 
 1. Fork the repo or clone it directly 
 
@@ -28,6 +28,6 @@ npm start
 ```
 
 
-* 🎉 🎉 Hit star if you like it !
+##🎉🎉 Hit star if you like it !
 
 
