@@ -8,12 +8,12 @@ function requestLogger(req, res, next) {
 function responseFunction(res, data, err) {
   if (err) {
     return res.status(400).json({
-      status: true,
+      status: false,
       error: err,
     });
   } else {
     return res.json({
-      status: false,
+      status: true,
       data,
     });
   }

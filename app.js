@@ -2,6 +2,7 @@ const express = require("express")
 const router = require("./routes").router
 const connectDB = require("./database")
 const morgan = require("morgan")
+const chalk = require("chalk")
 
 require("dotenv").config()
 
@@ -13,10 +14,10 @@ const app = express()
 
 app.use(express.json())
 
-console.log(`\n EnViroment is ------------- ${process.env.NODE_ENV} ------------- \n `)
+console.log((`\n EnViroment is ------------- ${chalk.bgYellowBright.black(process.env.NODE_ENV)} ------------- \n `))
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+app.use(morgan(chalk.cyanBright('\n :method :url :status :res[content-length] - :response-time ms \n')))
 
 app.use(router)
 
-app.listen(PORT, () => console.log(`Server listening at ${PORT}`))
+app.listen(PORT, () => console.log(chalk.blueBright (`\n Server listening at PORT ${PORT} \n `)))

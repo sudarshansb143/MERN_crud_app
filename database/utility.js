@@ -4,7 +4,6 @@ let globalDBInstance = false;
 
 module.exports = {
   getCollection: async function (collectionName) {
-
     if (!globalDBInstance) {
       await connectDB();
     }
@@ -16,7 +15,7 @@ function connectDB() {
   return new Promise(async (resolve, reject) => {
     let DB_NAME = process.env.DB_NAME;
     let dbURL = process.env.mongodb_url;
-    let client = new Mongo(dbURL);
+    let client = new Mongo(dbURL,  { useUnifiedTopology: true });
     //connect
     try {
       let connect = await client.connect();

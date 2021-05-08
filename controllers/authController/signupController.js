@@ -8,32 +8,33 @@ module.exports = {
     let { username, email, password, confirmPassword } = req.body;
 
     if (!username || !email || !password || !confirmPassword) {
-      return callback(res, null, "Please Provide Valid Data !");
+      callback(res, null, "Please Provide Valid Data !");
     }
 
     //check pass and confirm pass
     if (!(password === confirmPassword)) {
-      return callback(
-        res,
-        null,
-        "Password and confirm password must be same !"
-      );
+      callback(res, null, "Password and confirm password must be same !");
     }
-
-    let newUser = {
-      email,
-      username,
-      password,
-    };
 
     let userCollection = await getCollection("users");
 
-    let { insertedId } = await userCollection.insertOne(newUser);
+    let findResult = await userCollection.findOne({ email });
 
-    let data = {
-      insertedId,
-    };
+    if (findResult) {
+      callback(res, null, "email is already taken !");
+    } else {
+      let newUser = {
+        email,
+        username,
+        password,
+      };
 
-    return callback(res, data, null);
+      let { insertedId } = await userCollection.insertOne(newUser);
+
+      let data = {
+        insertedId,
+      };
+      callback(res, data, null);
+    }
   },
 };
